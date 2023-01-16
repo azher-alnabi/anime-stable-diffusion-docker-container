@@ -168,7 +168,7 @@ def main():
         "--seed", type=int, nargs="?", default=0, help="RNG seed for repeatability"
     )
     parser.add_argument(
-        "--ddim_steps", type=int, nargs="?", default=50, help="Number of sampling steps"
+        "--ddim_steps", type=int, nargs="?", default=20, help="Number of sampling steps"
     )
     parser.add_argument(
         "--attention-slicing",
