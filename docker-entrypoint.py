@@ -133,7 +133,7 @@ def main():
         "--scale",
         type=float,
         nargs="?",
-        default=7.5,
+        default=11,
         help="Classifier free guidance scale",
     )
     parser.add_argument(
