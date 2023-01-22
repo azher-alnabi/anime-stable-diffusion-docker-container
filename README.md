@@ -1,7 +1,7 @@
 # Stable Diffusion in Docker
 
 ```sh
-./build.sh run --device cpu 'An impressionist painting of a parakeet eating spaghetti in the desert'
+./build.sh run --device cpu --prompt 'An impressionist painting of a parakeet eating spaghetti in the desert'
 ```
 
 ![An impressionist painting of a parakeet eating spaghetti in the desert 1](img/An_impressionist_painting_of_a_parakeet_eating_spaghetti_in_the_desert_s1.png)
@@ -50,7 +50,7 @@ To build:
 To run:
 
 ```sh
-./build.sh run 'Andromeda galaxy in a bottle'
+./build.sh run --device cpu --prompt 'Andromeda galaxy in a bottle'
 ```
 
 ### Options
