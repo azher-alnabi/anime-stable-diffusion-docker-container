@@ -154,7 +154,7 @@ def main():
         "--device",
         type=str,
         nargs="?",
-        default="cuda",
+        default="cpu",
         help="The cpu or cuda device to use to render images",
     )
     parser.add_argument(
@@ -164,18 +164,6 @@ def main():
         const=True,
         default=False,
         help="Use float16 (half-sized) tensors instead of float32",
-    )
-    parser.add_argument(
-        "--image",
-        type=str,
-        nargs="?",
-        help="The input image to use for image-to-image diffusion",
-    )
-    parser.add_argument(
-        "--mask",
-        type=str,
-        nargs="?",
-        help="The input mask to use for diffusion inpainting",
     )
     parser.add_argument(
         "--model",
@@ -206,22 +194,9 @@ def main():
         help="Skip the safety checker",
     )
     parser.add_argument(
-        "--strength",
-        type=float,
-        default=0.75,
-        help="Diffusion strength to apply to the input image",
-    )
-    parser.add_argument(
         "--token", type=str, nargs="?", help="Huggingface user access token"
     )
-    parser.add_argument(
-        "--xformers-memory-efficient-attention",
-        type=bool,
-        nargs="?",
-        const=True,
-        default=False,
-        help="Use less memory but require the xformers library",
-    )
+
 
     args = parser.parse_args()
 
