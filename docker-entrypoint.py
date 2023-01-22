@@ -4,13 +4,7 @@ import numpy as np
 import torch
 from PIL import Image
 from diffusers import (
-    OnnxStableDiffusionPipeline,
-    OnnxStableDiffusionInpaintPipeline,
-    OnnxStableDiffusionImg2ImgPipeline,
     StableDiffusionPipeline,
-    StableDiffusionImg2ImgPipeline,
-    StableDiffusionInpaintPipeline,
-    StableDiffusionUpscalePipeline,
     schedulers,
 )
 
@@ -45,30 +39,8 @@ def remove_unused_args(p):
 
 def stable_diffusion_pipeline(p):
     p.dtype = torch.float16 if p.half else torch.float32
-
-    if p.device == "cpu":
-        p.diffuser = OnnxStableDiffusionPipeline
-        p.revision = "onnx"
-    else:
-        p.diffuser = StableDiffusionPipeline
-        p.revision = "fp16" if p.half else "main"
-
-    upscalers = ["stabilityai/stable-diffusion-x4-upscaler"]
-    if p.image is not None:
-        if p.revision == "onnx":
-            p.diffuser = OnnxStableDiffusionImg2ImgPipeline
-        elif p.model in upscalers:
-            p.diffuser = StableDiffusionUpscalePipeline
-        else:
-            p.diffuser = StableDiffusionImg2ImgPipeline
-        p.image = load_image(p.image)
-
-    if p.mask is not None:
-        if p.revision == "onnx":
-            p.diffuser = OnnxStableDiffusionInpaintPipeline
-        else:
-            p.diffuser = StableDiffusionInpaintPipeline
-        p.mask = load_image(p.mask)
+    p.diffuser = StableDiffusionPipeline
+    p.revision = "fp16" if p.half else "main"
 
     if p.token is None:
         with open("token.txt") as f:
@@ -168,7 +140,7 @@ def main():
         "--seed", type=int, nargs="?", default=0, help="RNG seed for repeatability"
     )
     parser.add_argument(
-        "--ddim_steps", type=int, nargs="?", default=20, help="Number of sampling steps"
+        "--ddim_steps", type=int, nargs="?", default=16, help="Number of sampling steps"
     )
     parser.add_argument(
         "--attention-slicing",
