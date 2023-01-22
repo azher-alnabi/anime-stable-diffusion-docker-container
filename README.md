@@ -1,34 +1,19 @@
 # Stable Diffusion in Docker
 
-Run the official [Stable Diffusion](https://huggingface.co/CompVis/stable-diffusion)
-releases on [Huggingface](https://huggingface.co/) in a GPU accelerated Docker
-container.
-
 ```sh
-./build.sh run 'An impressionist painting of a parakeet eating spaghetti in the desert'
+./build.sh run --device cpu 'An impressionist painting of a parakeet eating spaghetti in the desert'
 ```
 
 ![An impressionist painting of a parakeet eating spaghetti in the desert 1](img/An_impressionist_painting_of_a_parakeet_eating_spaghetti_in_the_desert_s1.png)
 ![An impressionist painting of a parakeet eating spaghetti in the desert 2](img/An_impressionist_painting_of_a_parakeet_eating_spaghetti_in_the_desert_s2.png)
 
-```sh
-./build.sh run --image parakeet_eating_spaghetti.png --strength 0.6 'Abstract art'
-```
-
-![Abstract art 1](img/Abstract_art_s1.png)
-![Abstract art 2](img/Abstract_art_s2.png)
-
 ## Before you start
 
 ### Minimum requirements
 
-By default, the pipeline uses the full model and weights which requires a CUDA
-capable GPU with 8GB+ of VRAM. It should take a few seconds to create one image.
-On less powerful GPUs you may need to modify some of the options; see the
-[Examples](#examples) section for more details. If you lack a suitable GPU you
-can set the option `--device cpu` instead. If you are using Docker Desktop and
-the container is terminated you may need to give Docker more resources by
-increasing the CPU, memory, and swap in the Settings -> Resources section.
+By default, this pipeline focuses on only using the CPU. 
+It will take a few minutes to create one image.
+Make sure to only use `--device cpu` 
 
 ### Huggingface token
 
@@ -68,33 +53,6 @@ To run:
 ./build.sh run 'Andromeda galaxy in a bottle'
 ```
 
-### Image-to-Image (`img2img`)
-
-First, copy an image to the `input` folder. Next, to run:
-
-```sh
-./build.sh run --image image.png 'Andromeda galaxy in a bottle'
-```
-
-### Image Upscaling (`upscale4x`)
-
-First, copy an image to the `input` folder. Next, to run:
-
-```sh
-./build.sh run --model 'stabilityai/stable-diffusion-x4-upscaler' \
-  --image image.png 'A detailed description of the image'
-```
-
-### Diffusion Inpainting (`inpaint`)
-
-First, copy an image and an image mask to the `input` folder. White areas of the
-mask will be diffused and black areas will be kept untouched. Next, to run:
-
-```sh
-./build.sh run --model 'runwayml/stable-diffusion-inpainting' \
-  --image image.png --mask mask.png 'Andromeda galaxy in a bottle'
-```
-
 ### Options
 
 Some of the options from [`txt2img.py`](https://github.com/CompVis/stable-diffusion/blob/main/scripts/txt2img.py)
@@ -114,25 +72,17 @@ Other options:
 * `--attention-slicing`: use less memory at the expense of inference speed
 (default is no attention slicing)
 * `--device [DEVICE]`: the cpu or cuda device to use to render images (default
-`cuda`)
+`cpu`)
 * `--half`: use float16 tensors instead of float32 (default `float32`)
-* `--image [IMAGE]`: the input image to use for image-to-image diffusion
-(default `None`)
-* `--mask [MASK]`: the input mask to use for diffusion inpainting (default
-`None`)
 * `--model [MODEL]`: the model used to render images (default is
-`CompVis/stable-diffusion-v1-4`)
+`Linaqruf/anything-v3-better-vae`)
 * `--negative-prompt [NEGATIVE_PROMPT]`: the prompt to not render into an image
 (default `None`)
 * `--scheduler [SCHEDULER]`: override the scheduler used to denoise the image
 (default `None`)
 * `--skip`: skip safety checker (default is the safety checker is on)
-* `--strength [STRENGTH]`: diffusion strength to apply to the input image
-(default 0.75)
 * `--token [TOKEN]`: specify a Huggingface user access token at the command line
 instead of reading it from a file (default is a file)
-* `--xformers-memory-efficient-attention`: use less memory but require the
-xformers library (default is that xformers is not required)
 
 ## Examples
 
@@ -155,15 +105,13 @@ Options can be combined:
 ./build.sh run --scale 7.0 --seed 42 'abstract art'
 ```
 
-On systems with <8GB of GPU RAM, you can try mixing and matching options:
+This will only utilize CPU, you can try mixing and matching options:
 
 * Make images smaller than 512x512 using `--W` and `--H` to decrease memory use
 and increase image creation speed
 * Use `--half` to decrease memory use but slightly decrease image quality
 * Use `--attention-slicing` to decrease memory use but also decrease image
 creation speed
-* Use `--xformers-memory-efficient-attention` to decrease memory use if the
-pipeline and the hardware supports the option
 * Decrease the number of samples and increase the number of iterations with
 `--n_samples` and `--n_iter` to decrease overall memory use
 * Skip the safety checker with `--skip` to run less code
