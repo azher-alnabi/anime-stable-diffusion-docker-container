@@ -24,14 +24,11 @@ def remove_unused_args(p):
     args = {
         "prompt": p.prompt,
         "negative_prompt": p.negative_prompt,
-        "image": p.image,
-        "mask_image": p.mask,
         "height": p.H,
         "width": p.W,
         "num_images_per_prompt": p.n_samples,
         "num_inference_steps": p.ddim_steps,
         "guidance_scale": p.scale,
-        "strength": p.strength,
         "generator": p.generator,
     }
     return {p: args[p] for p in params if p in args}
@@ -49,11 +46,7 @@ def stable_diffusion_pipeline(p):
     if p.seed == 0:
         p.seed = torch.random.seed()
 
-    if p.revision == "onnx":
-        p.seed = p.seed >> 32 if p.seed > 2**32 - 1 else p.seed
-        p.generator = np.random.RandomState(p.seed)
-    else:
-        p.generator = torch.Generator(device=p.device).manual_seed(p.seed)
+    p.generator = torch.Generator(device=p.device).manual_seed(p.seed)
 
     print("load pipeline start:", iso_date_time(), flush=True)
 
@@ -73,9 +66,6 @@ def stable_diffusion_pipeline(p):
 
     if p.attention_slicing:
         pipeline.enable_attention_slicing()
-
-    if p.xformers_memory_efficient_attention:
-        pipeline.enable_xformers_memory_efficient_attention()
 
     p.pipeline = pipeline
 
