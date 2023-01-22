@@ -181,7 +181,7 @@ def main():
         "--model",
         type=str,
         nargs="?",
-        default="CompVis/stable-diffusion-v1-4",
+        default="andite/anything-v4.0", # "CompVis/stable-diffusion-v1-4", "andite/anything-v4.0",
         help="The model used to render images",
     )
     parser.add_argument(
@@ -194,6 +194,7 @@ def main():
         "--scheduler",
         type=str,
         nargs="?",
+        default="DPMSolverSinglestepScheduler",
         help="Override the scheduler used to denoise the image",
     )
     parser.add_argument(
