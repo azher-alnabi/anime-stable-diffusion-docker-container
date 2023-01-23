@@ -1,6 +1,6 @@
-# Anything-v3-better-vae in Docker (CPU Only)
+# Linaqruf/anything-v3-better-vae in Docker (CPU Only)
 
-Stable Diffusion 
+Dockerized txt2img generation tool that allows for the utilization of Stable Diffusion. Stable Diffusion is a latent text-to-image diffusion model capable of generating photo-realistic images given any text input. The diffusion model implemented in this docker container can be found here: [Diffuser Model](https://huggingface.co/Linaqruf/anything-v3-better-vae)
 
 ```sh
 ./build.sh run --device cpu --skip --prompt "1girl, green hair, long hair, yellow eyes, warrior armor, warrior princess, tanned-black skin, battle field, shadows, lens flare, masterpiece" --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name"
@@ -15,7 +15,7 @@ Stable Diffusion
 
 ### Minimum requirements
 
-By default, this pipeline focuses on only using the CPUas rendering on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU, your mileage may vary). Make sure to only use `--device cpu` 
+By default, this pipeline renders images using only the CPU as rendering on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU, your mileage may vary). Make sure to only use `--device cpu` 
 
 ## Quickstart
 
