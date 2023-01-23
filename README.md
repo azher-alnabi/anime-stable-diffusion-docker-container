@@ -140,7 +140,7 @@ The images are saved as PNGs in the `output` folder using the prompt text. The
 Special Thanks to the following people and communities involved with helping me create this Docker container.
 
 ### Github Member: fboutnois
-Thank you to fboutnois for the original implementation of this Docker container, and for being super accomadating to my questions and requests. Check out their [github](https://github.com/fboulnois) profile for more of their work.
+Thank you to fboutnois for the original implementation of this Docker container, and for being super accommodating to my questions and requests. Check out their [github](https://github.com/fboulnois) profile for more of their work.
 
 ### Furqanil Taqwa (Aka Linaqruf)
 Thank you to Linaqruf for the creation of the diffuser model: Linaqruf/anything-v3-better-vae. Their work can be found at: [Linaqruf Hugging Face Profile](https://huggingface.co/Linaqruf)
