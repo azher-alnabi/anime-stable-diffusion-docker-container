@@ -1,14 +1,8 @@
 # Stable Diffusion in Docker
 
-
-
 ```sh
-<<<<<<< HEAD
-./build.sh run --device cpu --prompt 'An impressionist painting of a parakeet eating spaghetti in the desert'
-=======
 ./build.sh run --device cpu --skip \
 --prompt "1girl, green hair, long hair, yellow eyes, warrior armor, warrior princess, tanned-black skin, battle field, shadows, lens flare, masterpiece" \ --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name" 
->>>>>>> 8f59ea0 (Updated README)
 ```
 
 ![Warrior Princess](img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9746260096546669498__n_1.png)
@@ -16,19 +10,15 @@
 ![Warrior Princess](img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9764299217508183519__n_1.png)
 
 
-
 ## Before you start
 
 ### Minimum requirements
 
-<<<<<<< HEAD
 By default, this pipeline focuses on only using the CPU. 
 It will take a few minutes to create one image 
 (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU).
-=======
 By default, this pipeline focuses on only using the CPU as rendering on a GPU is extremely cost prohibitive.
 It will take a few minutes to create one image.
->>>>>>> 8f59ea0 (Updated README)
 Make sure to only use `--device cpu` 
 
 ## Quickstart
