@@ -4,7 +4,7 @@ This Docker container is a text-to-image (txt2img) generation tool that leverage
 
 ## Example Image Output
 
-The following prompt was used to render the three images below, feel free to test this out yourself (Careful! May generate **NSFW**, ***"not safe for work"***, images. Use at your own discretion)
+The following prompt was used to render the three images below, feel free to test this out yourself (Careful! May generate **NSFW** **(_Not Safe For Work_)**, images. Use at your own discretion)
 
 ```sh
 ./build.sh run --device cpu --skip --prompt "1girl, green hair, long hair, yellow eyes, warrior armor, warrior princess, tanned-black skin, battle field, shadows, lens flare, masterpiece" --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name"
@@ -16,9 +16,11 @@ The following prompt was used to render the three images below, feel free to tes
   <img src="img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9764299217508183519__n_1.png" alt="Green-Haired Warrior Princess" width="256" height="256">
 </p>
 
+These three images are my rendition on a warrior with green hair, yellow eyes on a battlefield.
+
 ## Disclaimer
 
-By default, this pipeline will render images that may be **NSFW** ***(Not safe for work)***. The reason with why this will occur is that it utilizes the ```--skip``` feature set as this allows for the time with which it takes to render an image to be quicker. As such, if you use this tool for safe for work applications (SFW), do not include ```--skip```. **Use at your own discretion**.
+By default, this pipeline will render images that may be **NSFW** **(_Not Safe For Work_)**. The reason with why this will occur is that it utilizes the ```--skip``` feature set as this allows for the time with which it takes to render an image to be quicker. As such, if you use this tool for safe for work applications (SFW), do not include ```--skip```. **Use at your own discretion**.
 
 ## Requirements
 
@@ -52,11 +54,11 @@ To run a test:
 ./build.sh test
 ```
 
-This will render a single 512x512 (height and width) image similar to the three images found at the start of this README.md
+This will render a single 512x512 (height and width) image similar to the three images shown above: [Warrior Princess 1](https://github.com/azher-alnabi/Anything-V3-SD-Docker-Container/blob/main/img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9746260096546669498__n_1.png), [Warrior Princess 2](https://github.com/azher-alnabi/Anything-V3-SD-Docker-Container/blob/main/img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_2951297131937974408__n_1.png), [Warrior Princess 3](https://github.com/azher-alnabi/Anything-V3-SD-Docker-Container/blob/main/img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9764299217508183519__n_1.png).
 
 ## Run
 
-### Text-to-Image (`txt2img`)
+### Text-to-Image 
 
 To run:
 
@@ -79,6 +81,12 @@ Some of the options from [`txt2img.py`](https://github.com/CompVis/stable-diffus
 * `--seed [SEED]`: RNG seed for repeatability (default is a random seed)
 * `--ddim_steps [DDIM_STEPS]`: number of sampling steps (default 20)
 * `--skip`: skip safety checker (default is the safety checker is on)
+
+## Outputs
+
+### Images
+
+The images are saved as PNGs in the `output` folder using the prompt text. The `build.sh` script creates and mounts this folder as a volume in the docker container.
 
 ## Examples
 
@@ -134,13 +142,6 @@ prefix your commands with `MSYS_NO_PATHCONV=1` (or export it beforehand):
 ```sh
 MSYS_NO_PATHCONV=1 ./build.sh run --device cpu --half --prompt 'warrior princess'
 ```
-
-## Outputs
-
-### Images
-
-The images are saved as PNGs in the `output` folder using the prompt text. The
-`build.sh` script creates and mounts this folder as a volume in the container.
 
 ## Credits
 
