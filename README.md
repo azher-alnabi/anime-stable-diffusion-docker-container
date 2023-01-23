@@ -1,4 +1,4 @@
-# Stable Diffusion in Docker
+# Stable Diffusion in Docker (Linaqruf/anything-v3-better-vae) (CPU Only)
 
 ```sh
 ./build.sh run --device cpu --skip --prompt "1girl, green hair, long hair, yellow eyes, warrior armor, warrior princess, tanned-black skin, battle field, shadows, lens flare, masterpiece" --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name"
