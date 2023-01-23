@@ -1,5 +1,6 @@
-# Stable Diffusion in Docker 
-# (Linaqruf/anything-v3-better-vae) (CPU Only)
+# Anything-v3-better-vae in Docker (CPU Only)
+
+Stable Diffusion 
 
 ```sh
 ./build.sh run --device cpu --skip --prompt "1girl, green hair, long hair, yellow eyes, warrior armor, warrior princess, tanned-black skin, battle field, shadows, lens flare, masterpiece" --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name"
@@ -67,7 +68,7 @@ Some of the options from [`txt2img.py`](https://github.com/CompVis/stable-diffus
 * `--n_iter [N_ITER]`: number of times to run pipeline (default 1)
 * `--H [H]`: image height in pixels (default 512, must be divisible by 64)
 * `--W [W]`: image width in pixels (default 512, must be divisible by 64)
-* `--scale [SCALE]`: unconditional guidance scale (default 11)
+* `--scale [SCALE]`: Classifier Guidance Scale (CGS) (default 11)
 * `--seed [SEED]`: RNG seed for repeatability (default is a random seed)
 * `--ddim_steps [DDIM_STEPS]`: number of sampling steps (default 20)
 * `--skip`: skip safety checker (default is the safety checker is on)
@@ -81,16 +82,16 @@ These commands are both identical:
 ./build.sh run --device cpu --prompt 'warrior princess'
 ```
 
-Set the seed to 42 (Allows rendering of image with constant output):
+Set the seed to 255 (Allows rendering of image with constant output):
 
 ```sh
-./build.sh run --device cpu --seed 42 --prompt 'warrior princess'
+./build.sh run --device cpu --seed 255 --prompt 'warrior princess'
 ```
 
 Options can be combined:
 
 ```sh
-./build.sh run --device cpu --skip --scale 11.0 --seed 42 --prompt 'warrior princess'
+./build.sh run --device cpu --skip --scale 11.0 --seed 255 --prompt 'warrior princess'
 ```
 
 ## Minimize Time Rendering
