@@ -59,53 +59,41 @@ Some of the options from [`txt2img.py`](https://github.com/CompVis/stable-diffus
 are implemented for compatibility:
 
 * `--prompt [PROMPT]`: the prompt to render into an image
+* `--negative-prompt [NEGATIVE_PROMPT]`: the prompt to not render into an image
+(default `None`)
 * `--n_samples [N_SAMPLES]`: number of images to create per run (default 1)
 * `--n_iter [N_ITER]`: number of times to run pipeline (default 1)
 * `--H [H]`: image height in pixels (default 512, must be divisible by 64)
 * `--W [W]`: image width in pixels (default 512, must be divisible by 64)
-* `--scale [SCALE]`: unconditional guidance scale (default 7.5)
+* `--scale [SCALE]`: unconditional guidance scale (default 11)
 * `--seed [SEED]`: RNG seed for repeatability (default is a random seed)
-* `--ddim_steps [DDIM_STEPS]`: number of sampling steps (default 50)
-
-Other options:
-
-* `--attention-slicing`: use less memory at the expense of inference speed
-(default is no attention slicing)
-* `--device [DEVICE]`: the cpu or cuda device to use to render images (default
-`cpu`)
-* `--half`: use float16 tensors instead of float32 (default `float32`)
-* `--model [MODEL]`: the model used to render images (default is
-`Linaqruf/anything-v3-better-vae`)
-* `--negative-prompt [NEGATIVE_PROMPT]`: the prompt to not render into an image
-(default `None`)
-* `--scheduler [SCHEDULER]`: override the scheduler used to denoise the image
-(default `None`)
+* `--ddim_steps [DDIM_STEPS]`: number of sampling steps (default 20)
 * `--skip`: skip safety checker (default is the safety checker is on)
-* `--token [TOKEN]`: specify a Huggingface user access token at the command line
-instead of reading it from a file (default is a file)
 
 ## Examples
 
 These commands are both identical:
 
 ```sh
-./build.sh run 'abstract art'
-./build.sh run --prompt 'abstract art'
+./build.sh run --device cpu 'abstract art'
+./build.sh run --device cpu --prompt 'abstract art'
 ```
 
 Set the seed to 42:
 
 ```sh
-./build.sh run --seed 42 'abstract art'
+./build.sh run --device cpu --seed 42 'abstract art'
 ```
 
 Options can be combined:
 
 ```sh
-./build.sh run --scale 7.0 --seed 42 'abstract art'
+./build.sh run --device cpu --scale 7.0 --seed 42 'abstract art'
 ```
 
-This will only utilize CPU, minimizing rendering time can be used with these options:
+## Minimize Time Rendering
+
+Minimize rendering time with these options (some options may not work currently):
 
 * Make images smaller than 512x512 using `--W` and `--H` to decrease memory use
 and increase image creation speed
@@ -122,6 +110,22 @@ creation speed
   --n_samples 1 --n_iter 1 --skip --prompt 'abstract art'
 ```
 
+## Experimental Options
+
+Options you can play around with (May not work):
+
+* `--attention-slicing`: use less memory at the expense of inference speed
+(default is no attention slicing)
+* `--device [DEVICE]`: the cpu or cuda device to use to render images (default
+`cpu`)
+* `--half`: use float16 tensors instead of float32 (default `float32`)
+* `--model [MODEL]`: the model used to render images (default is
+`Linaqruf/anything-v3-better-vae`)
+* `--scheduler [SCHEDULER]`: override the scheduler used to denoise the image
+(default `None`)
+* `--token [TOKEN]`: specify a Huggingface user access token at the command line
+instead of reading it from a file (default is a file)
+
 On Windows, if you aren't using WSL2 and instead use MSYS, MinGW, or Git Bash,
 prefix your commands with `MSYS_NO_PATHCONV=1` (or export it beforehand):
 
@@ -130,13 +134,6 @@ MSYS_NO_PATHCONV=1 ./build.sh run --half --prompt 'abstract art'
 ```
 
 ## Outputs
-
-### Model
-
-The model and other files are cached in a volume called `huggingface`. The
-models are stored in `<volume>/diffusers/<model>/snapshots/<githash>/unet/<weights>`.
-Checkpoint files (`ckpt`s) are unofficial versions of the official models, and
-so these are not part of the official release.
 
 ### Images
 
