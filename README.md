@@ -22,7 +22,7 @@ By default, this pipeline will render images that may be **NSFW** ***(Not safe f
 
 ## Requirements
 
-By default, this pipeline will render images using only the CPU as rendering on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU, your mileage may vary). Make sure to only use `--device cpu`. The dockerfile runs on 3.10-slim-bullseye, and as such is tested on Debian 11 based systems. If you're using Alpine or Windows, your mileage may vary (Will check compatability at a later date).
+By default, this pipeline will render images using only the CPU as rendering on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU, your mileage may vary). Make sure to only use `--device cpu`. The bundled dockerfile runs on 3.10-slim-bullseye, and as such is tested on **only Debian 11** based systems, the operating System I used to personally test this docker container was "Ubuntu 20.04". If you're using **Alpine**, or **Windows**, or **macOS** it may not work, and as such, your mileage may vary (Will check compatability at a later date).
 
 ## Quickstart
 
