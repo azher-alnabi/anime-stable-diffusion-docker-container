@@ -26,7 +26,7 @@ By default, this pipeline will render images using only the CPU as rendering on 
 
 ## Quickstart
 
-The pipeline is managed using a single [`build.sh`](build.sh) script.
+The pipeline is managed using a single [`build.sh`](build.sh) script. Big kudos to [fboulnois](https://github.com/fboulnois) for setting this up. I cannot thank you enough.
 
 ### Work in progress:
 
