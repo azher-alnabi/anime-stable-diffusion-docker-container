@@ -13,21 +13,15 @@
 
 ### Minimum requirements
 
-By default, this pipeline focuses on only using the CPU. 
-It will take a few minutes to create one image 
-(Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU).
-By default, this pipeline focuses on only using the CPU as rendering on a GPU is extremely cost prohibitive.
-It will take a few minutes to create one image.
-Make sure to only use `--device cpu` 
+By default, this pipeline focuses on only using the CPUas rendering on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU). Make sure to only use `--device cpu` 
 
 ## Quickstart
 
 The pipeline is managed using a single [`build.sh`](build.sh) script.
 
-Work in progress: Pull Functionality using `./build.sh pull`. 
-Will pull latest image once it is available.
+### Work in progress:
 
-Currently, follow the build section to initialize Dockerfile.
+Pull Functionality using `./build.sh pull`. This functionality will allow you to pull the latest image once it is available. Currently, follow the build section to initialize Dockerfile.
 
 ## Build
 
@@ -36,12 +30,19 @@ To build:
 ```sh
 ./build.sh build  # or just ./build.sh
 ```
+### Work in progress 
 
-Work in progress: make sure your [user access token](#huggingface-token) is saved in a file called
-`token.txt`.
+Work in progress: Make sure your [user access token](#huggingface-token) is saved in a file called `token.txt`. As far as I am aware, you don't need to pass through a huggingface token current;y, however open a github issue if an error occurs.
 
 ## Testing
 
+To run a test:
+
+```sh
+./build.sh test
+```
+
+This will render a single 512x512 (height and width) image similar to the ones found at the start of this README.md
 
 ## Run
 
@@ -50,13 +51,12 @@ Work in progress: make sure your [user access token](#huggingface-token) is save
 To run:
 
 ```sh
-./build.sh run --device cpu --prompt 'Andromeda galaxy in a bottle'
+./build.sh run --device cpu --prompt 'warrior princess'
 ```
 
 ### Options
 
-Some of the options from [`txt2img.py`](https://github.com/CompVis/stable-diffusion/blob/main/scripts/txt2img.py)
-are implemented for compatibility:
+Some of the options from [`txt2img.py`](https://github.com/CompVis/stable-diffusion/blob/main/scripts/txt2img.py) are implemented for compatibility:
 
 * `--prompt [PROMPT]`: the prompt to render into an image
 * `--negative-prompt [NEGATIVE_PROMPT]`: the prompt to not render into an image
@@ -75,20 +75,20 @@ are implemented for compatibility:
 These commands are both identical:
 
 ```sh
-./build.sh run --device cpu 'abstract art'
-./build.sh run --device cpu --prompt 'abstract art'
+./build.sh run --device cpu 'warrior princess'
+./build.sh run --device cpu --prompt 'warrior princess'
 ```
 
 Set the seed to 42:
 
 ```sh
-./build.sh run --device cpu --seed 42 'abstract art'
+./build.sh run --device cpu --seed 42 'warrior princess'
 ```
 
 Options can be combined:
 
 ```sh
-./build.sh run --device cpu --scale 7.0 --seed 42 'abstract art'
+./build.sh run --device cpu --scale 7.0 --seed 42 'warrior princess'
 ```
 
 ## Minimize Time Rendering
@@ -105,32 +105,27 @@ creation speed
 * Skip the safety checker with `--skip` to run less code
 
 ```sh
-./build.sh run --W 256 --H 256 --half \
-  --attention-slicing --xformers-memory-efficient-attention \
-  --n_samples 1 --n_iter 1 --skip --prompt 'abstract art'
+./build.sh run --device cpu --skip \
+  --W 256 --H 256 --half --attention-slicing \
+  --n_samples 1 --n_iter 1 --prompt 'warrior princess'
 ```
 
 ## Experimental Options
 
 Options you can play around with (May not work):
 
-* `--attention-slicing`: use less memory at the expense of inference speed
-(default is no attention slicing)
-* `--device [DEVICE]`: the cpu or cuda device to use to render images (default
-`cpu`)
+* `--attention-slicing`: use less memory at the expense of inference speed (default is no attention slicing)
+* `--device [DEVICE]`: the cpu or cuda device to use to render images (default is unfortunatly `gpu`, will try and fix later)
 * `--half`: use float16 tensors instead of float32 (default `float32`)
-* `--model [MODEL]`: the model used to render images (default is
-`Linaqruf/anything-v3-better-vae`)
-* `--scheduler [SCHEDULER]`: override the scheduler used to denoise the image
-(default `None`)
-* `--token [TOKEN]`: specify a Huggingface user access token at the command line
-instead of reading it from a file (default is a file)
+* `--model [MODEL]`: the model used to render images (default is `Linaqruf/anything-v3-better-vae`)
+* `--scheduler [SCHEDULER]`: override the scheduler used to denoise the image (default `None`)
+* `--token [TOKEN]`: specify a Huggingface user access token at the command line instead of reading it from a file (default is a file)
 
 On Windows, if you aren't using WSL2 and instead use MSYS, MinGW, or Git Bash,
 prefix your commands with `MSYS_NO_PATHCONV=1` (or export it beforehand):
 
 ```sh
-MSYS_NO_PATHCONV=1 ./build.sh run --half --prompt 'abstract art'
+MSYS_NO_PATHCONV=1 ./build.sh run --device cpu --half --prompt 'warrior princess'
 ```
 
 ## Outputs
@@ -142,16 +137,16 @@ The images are saved as PNGs in the `output` folder using the prompt text. The
 
 ## Credits
 
-Special Thank you to the following people/groups involved with helping me create this Docker container.
+Special Thanks to the following people and communities involved with helping me create this Docker container.
 
 ### Github Member: fboutnois
-Thank you to fboutnois for the original implementation of this Docker container, and for being super accomadating to my questions and requests. Check out their [github](https://github.com/fboulnois) for more of their work.
+Thank you to fboutnois for the original implementation of this Docker container, and for being super accomadating to my questions and requests. Check out their [github](https://github.com/fboulnois) profile for more of their work.
 
 ### Furqanil Taqwa (Aka Linaqruf)
-Thank you to Linaqruf for the creation of the diffuser model: Linaqruf/anything-v3-better-vae. Their work can be found [hugging face](https://huggingface.co/Linaqruf)
+Thank you to Linaqruf for the creation of the diffuser model: Linaqruf/anything-v3-better-vae. Their work can be found at:[Linaqruf Hugging Face Profile](https://huggingface.co/Linaqruf)
 
 ### Huggingface Community
-Thank you to the Huggingface team for creating the AI community and Machine Learning platform [hugging face](https://huggingface.co/).
+Thank you to the Huggingface team for creating the AI community and Machine Learning platform, community found at:[Hugging Face Community Landing Page](https://huggingface.co/).
 
 ### Stability AI
-THank you to Stability AI for open sourcing Stable Diffusion. Learn more about their work [stable ai](https://stability.ai/).
+Thank you to Stability AI for open sourcing Stable Diffusion. Learn more about their work at:[Stability AI Landing Page](https://stability.ai/).
