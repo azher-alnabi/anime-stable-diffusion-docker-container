@@ -13,7 +13,7 @@
 
 ### Minimum requirements
 
-By default, this pipeline focuses on only using the CPUas rendering on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU). Make sure to only use `--device cpu` 
+By default, this pipeline focuses on only using the CPUas rendering on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU, your mileage may vary). Make sure to only use `--device cpu` 
 
 ## Quickstart
 
@@ -28,8 +28,9 @@ Pull Functionality using `./build.sh pull`. This functionality will allow you to
 To build:
 
 ```sh
-./build.sh build  # or just ./build.sh
+./build.sh build
 ```
+
 ### Work in progress 
 
 Work in progress: Make sure your [user access token](#huggingface-token) is saved in a file called `token.txt`. As far as I am aware, you don't need to pass through a huggingface token current;y, however open a github issue if an error occurs.
@@ -42,7 +43,7 @@ To run a test:
 ./build.sh test
 ```
 
-This will render a single 512x512 (height and width) image similar to the ones found at the start of this README.md
+This will render a single 512x512 (height and width) image similar to the three images found at the start of this README.md
 
 ## Run
 
@@ -79,30 +80,27 @@ These commands are both identical:
 ./build.sh run --device cpu --prompt 'warrior princess'
 ```
 
-Set the seed to 42:
+Set the seed to 42 (Allows rendering of image with constant output):
 
 ```sh
-./build.sh run --device cpu --seed 42 'warrior princess'
+./build.sh run --device cpu --seed 42 --prompt 'warrior princess'
 ```
 
 Options can be combined:
 
 ```sh
-./build.sh run --device cpu --scale 7.0 --seed 42 'warrior princess'
+./build.sh run --device cpu --skip --scale 11.0 --seed 42 --prompt 'warrior princess'
 ```
 
 ## Minimize Time Rendering
 
-Minimize rendering time with these options (some options may not work currently):
+Minimize rendering time with these options (some options are in experimental):
 
-* Make images smaller than 512x512 using `--W` and `--H` to decrease memory use
-and increase image creation speed
+* Make images smaller than 512x512 using `--W` and `--H` to decrease memory use and increase image creation speed
 * Use `--half` to decrease memory use but slightly decrease image quality
-* Use `--attention-slicing` to decrease memory use but also decrease image
-creation speed
-* Decrease the number of samples and increase the number of iterations with
-`--n_samples` and `--n_iter` to decrease overall memory use
-* Skip the safety checker with `--skip` to run less code
+* Use `--attention-slicing` to decrease memory use but also decrease image creation speed
+* Decrease the number of samples and increase the number of iterations with `--n_samples` and `--n_iter` to decrease overall memory use
+* Skip the safety checker with `--skip` to run less code (Work in progress: Implementation by default)
 
 ```sh
 ./build.sh run --device cpu --skip \
@@ -118,7 +116,7 @@ Options you can play around with (May not work):
 * `--device [DEVICE]`: the cpu or cuda device to use to render images (default is unfortunatly `gpu`, will try and fix later)
 * `--half`: use float16 tensors instead of float32 (default `float32`)
 * `--model [MODEL]`: the model used to render images (default is `Linaqruf/anything-v3-better-vae`)
-* `--scheduler [SCHEDULER]`: override the scheduler used to denoise the image (default `None`)
+* `--scheduler [SCHEDULER]`: override the scheduler used to denoise the image (default `DPMSolverSinglestepScheduler`)
 * `--token [TOKEN]`: specify a Huggingface user access token at the command line instead of reading it from a file (default is a file)
 
 On Windows, if you aren't using WSL2 and instead use MSYS, MinGW, or Git Bash,
@@ -143,10 +141,10 @@ Special Thanks to the following people and communities involved with helping me 
 Thank you to fboutnois for the original implementation of this Docker container, and for being super accomadating to my questions and requests. Check out their [github](https://github.com/fboulnois) profile for more of their work.
 
 ### Furqanil Taqwa (Aka Linaqruf)
-Thank you to Linaqruf for the creation of the diffuser model: Linaqruf/anything-v3-better-vae. Their work can be found at:[Linaqruf Hugging Face Profile](https://huggingface.co/Linaqruf)
+Thank you to Linaqruf for the creation of the diffuser model: Linaqruf/anything-v3-better-vae. Their work can be found at: [Linaqruf Hugging Face Profile](https://huggingface.co/Linaqruf)
 
 ### Huggingface Community
-Thank you to the Huggingface team for creating the AI community and Machine Learning platform, community found at:[Hugging Face Community Landing Page](https://huggingface.co/).
+Thank you to the Huggingface team for creating the AI community and Machine Learning platform, community found at: [Hugging Face Community Landing Page](https://huggingface.co/).
 
 ### Stability AI
-Thank you to Stability AI for open sourcing Stable Diffusion. Learn more about their work at:[Stability AI Landing Page](https://stability.ai/).
+Thank you to Stability AI for open sourcing Stable Diffusion. Learn more about their work at: [Stability AI Landing Page](https://stability.ai/).
