@@ -1,21 +1,24 @@
-# Linaqruf/anything-v3-better-vae in Docker (CPU Only)
+# Stable Diffusion Dockerized (CPU Only)
 
-Dockerized txt2img generation tool that allows for the utilization of Stable Diffusion. Stable Diffusion is a latent text-to-image diffusion model capable of generating photo-realistic images given any text input. The diffusion model implemented in this docker container can be found here: [Diffuser Model](https://huggingface.co/Linaqruf/anything-v3-better-vae)
+This Docker container is a txt2img generation tool that leverages Stable Diffusion with a diffusion model. Stable Diffusion is a latent text-to-image diffusion model capable of generating photo-realistic images given any text input. The diffusion model implemented in this docker container can be found here: [Diffuser Model](https://huggingface.co/Linaqruf/anything-v3-better-vae).
+
+The following prompt was used to render the three images below, feel free to test this out yourself (Careful may generate NSFW imagery, use at your own discretion)
 
 ```sh
 ./build.sh run --device cpu --skip --prompt "1girl, green hair, long hair, yellow eyes, warrior armor, warrior princess, tanned-black skin, battle field, shadows, lens flare, masterpiece" --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name"
 ```
+
 <p float="left">
   <img src="img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9746260096546669498__n_1.png" alt="Green-Haired Warrior Princess" width="256" height="256">
   <img src="img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_2951297131937974408__n_1.png" alt="Green-Haired Warrior Princess" width="256" height="256">
   <img src="img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9764299217508183519__n_1.png" alt="Green-Haired Warrior Princess" width="256" height="256">
 </p>
 
-## Before you start
+## Requirements & Disclaimer
 
-### Minimum requirements
+By default, this pipeline will render images using only the CPU as rendering on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU, your mileage may vary). Make sure to only use `--device cpu`
 
-By default, this pipeline renders images using only the CPU as rendering on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU, your mileage may vary). Make sure to only use `--device cpu` 
+By default, this pipeline will render images that may be NSFW (Not safe for work). The reason with why this will occur is that it utilizes the ```sh --skip``` feature set as this allows for the time with which it takes to render an image to be quicker. As such, if you use this tool for safe for work applications (SFW), do not include ```sh --skip```. Use at your own discretion.
 
 ## Quickstart
 
