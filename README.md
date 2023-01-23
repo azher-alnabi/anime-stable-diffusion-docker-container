@@ -4,7 +4,7 @@ This Docker container is a text-to-image (txt2img) generation tool that leverage
 
 ## Example Image Output
 
-The following prompt was used to render the three images below, feel free to test this out yourself (Careful may generate NSFW, "not safe for work", imagery, use at your own discretion)
+The following prompt was used to render the three images below, feel free to test this out yourself (Careful! May generate **NSFW**, ***"not safe for work"***, images. Use at your own discretion)
 
 ```sh
 ./build.sh run --device cpu --skip --prompt "1girl, green hair, long hair, yellow eyes, warrior armor, warrior princess, tanned-black skin, battle field, shadows, lens flare, masterpiece" --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name"
@@ -18,11 +18,11 @@ The following prompt was used to render the three images below, feel free to tes
 
 ## Disclaimer
 
-By default, this pipeline will render images that may be NSFW (Not safe for work). The reason with why this will occur is that it utilizes the ```--skip``` feature set as this allows for the time with which it takes to render an image to be quicker. As such, if you use this tool for safe for work applications (SFW), do not include ```--skip```. Use at your own discretion.
+By default, this pipeline will render images that may be **NSFW** ***(Not safe for work)***. The reason with why this will occur is that it utilizes the ```--skip``` feature set as this allows for the time with which it takes to render an image to be quicker. As such, if you use this tool for safe for work applications (SFW), do not include ```--skip```. **Use at your own discretion**.
 
 ## Requirements
 
-By default, this pipeline will render images using only the CPU as rendering on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU, your mileage may vary). Make sure to only use `--device cpu`
+By default, this pipeline will render images using only the CPU as rendering on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU, your mileage may vary). Make sure to only use `--device cpu`. The dockerfile runs on 3.10-slim-bullseye, and as such is tested on Debian 11 based systems. If you're using Alpine or Windows, your mileage may vary (Will check compatability at a later date).
 
 ## Quickstart
 
