@@ -1,6 +1,8 @@
-# Stable Diffusion Dockerized (CPU Only)
+# Stable Diffusion Docker Container (CPU Only)
 
-This Docker container is a txt2img generation tool that leverages Stable Diffusion with a diffusion model. Stable Diffusion is a latent text-to-image diffusion model capable of generating photo-realistic images given any text input. The diffusion model implemented in this docker container can be found here: [Diffuser Model](https://huggingface.co/Linaqruf/anything-v3-better-vae).
+This Docker container is a text-to-image (txt2img) generation tool that leverages Stable Diffusion with a packaged diffusion model. Stable Diffusion is a deep learning, latent txt2img diffusion model capable of generating photo-realistic images given any text input, for more information visit this wikipedia page: [Stable Diffusion](https://en.wikipedia.org/wiki/Stable_Diffusion). The diffusion model that was packaged in this docker container can be found here: [Diffuser Model](https://huggingface.co/Linaqruf/anything-v3-better-vae).
+
+## Example Image Output
 
 The following prompt was used to render the three images below, feel free to test this out yourself (Careful may generate NSFW imagery, use at your own discretion)
 
