@@ -12,7 +12,8 @@
 ### Minimum requirements
 
 By default, this pipeline focuses on only using the CPU. 
-It will take a few minutes to create one image.
+It will take a few minutes to create one image 
+(Roughly 4:50 minutes on a Ryzen 5 5600x CPU).
 Make sure to only use `--device cpu` 
 
 ### Huggingface token
