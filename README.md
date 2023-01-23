@@ -1,48 +1,58 @@
 # Stable Diffusion in Docker
 
+
+
 ```sh
+<<<<<<< HEAD
 ./build.sh run --device cpu --prompt 'An impressionist painting of a parakeet eating spaghetti in the desert'
+=======
+./build.sh run --device cpu --skip \
+--prompt "1girl, green hair, long hair, yellow eyes, warrior armor, warrior princess, tanned-black skin, battle field, shadows, lens flare, masterpiece" \ --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name" 
+>>>>>>> 8f59ea0 (Updated README)
 ```
 
-![An impressionist painting of a parakeet eating spaghetti in the desert 1](img/An_impressionist_painting_of_a_parakeet_eating_spaghetti_in_the_desert_s1.png)
-![An impressionist painting of a parakeet eating spaghetti in the desert 2](img/An_impressionist_painting_of_a_parakeet_eating_spaghetti_in_the_desert_s2.png)
+![Warrior Princess](img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9746260096546669498__n_1.png)
+![Warrior Princess](img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_2951297131937974408__n_1.png)
+![Warrior Princess](img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9764299217508183519__n_1.png)
+
+
 
 ## Before you start
 
 ### Minimum requirements
 
+<<<<<<< HEAD
 By default, this pipeline focuses on only using the CPU. 
 It will take a few minutes to create one image 
 (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU).
+=======
+By default, this pipeline focuses on only using the CPU as rendering on a GPU is extremely cost prohibitive.
+It will take a few minutes to create one image.
+>>>>>>> 8f59ea0 (Updated README)
 Make sure to only use `--device cpu` 
-
-### Huggingface token
-
-Since it uses the official model, you will need to create a [user access token](https://huggingface.co/docs/hub/security-tokens)
-in your [Huggingface account](https://huggingface.co/settings/tokens). Save the
-user access token in a file called `token.txt` and make sure it is available
-when building the container. The token content should begin with `hf_...`
 
 ## Quickstart
 
 The pipeline is managed using a single [`build.sh`](build.sh) script.
 
-Pull the latest version of `stable-diffusion-docker` using `./build.sh pull`.
-You will need to use the option `--token` to specify a valid [user access token](#huggingface-token)
-when using [`./build run`](#run).
+Work in progress: Pull Functionality using `./build.sh pull`. 
+Will pull latest image once it is available.
 
-Alternately, build the image locally before running it.
+Currently, follow the build section to initialize Dockerfile.
 
 ## Build
-
-Make sure your [user access token](#huggingface-token) is saved in a file called
-`token.txt`.
 
 To build:
 
 ```sh
 ./build.sh build  # or just ./build.sh
 ```
+
+Work in progress: make sure your [user access token](#huggingface-token) is saved in a file called
+`token.txt`.
+
+## Testing
+
 
 ## Run
 
@@ -106,7 +116,7 @@ Options can be combined:
 ./build.sh run --scale 7.0 --seed 42 'abstract art'
 ```
 
-This will only utilize CPU, you can try mixing and matching options:
+This will only utilize CPU, minimizing rendering time can be used with these options:
 
 * Make images smaller than 512x512 using `--W` and `--H` to decrease memory use
 and increase image creation speed
@@ -143,3 +153,19 @@ so these are not part of the official release.
 
 The images are saved as PNGs in the `output` folder using the prompt text. The
 `build.sh` script creates and mounts this folder as a volume in the container.
+
+## Credits
+
+Special Thank you to the following people/groups involved with helping me create this Docker container.
+
+### Github Member: fboutnois
+Thank you to fboutnois for the original implementation of this Docker container, and for being super accomadating to my questions and requests. Check out their [github](https://github.com/fboulnois) for more of their work.
+
+### Furqanil Taqwa (Aka Linaqruf)
+Thank you to Linaqruf for the creation of the diffuser model: Linaqruf/anything-v3-better-vae. Their work can be found [hugging face](https://huggingface.co/Linaqruf)
+
+### Huggingface Community
+Thank you to the Huggingface team for creating the AI community and Machine Learning platform [hugging face](https://huggingface.co/).
+
+### Stability AI
+THank you to Stability AI for open sourcing Stable Diffusion. Learn more about their work [stable ai](https://stability.ai/).

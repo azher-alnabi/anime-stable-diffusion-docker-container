@@ -31,11 +31,11 @@ dev() {
         -it "$CWD"
 }
 
-pull() {
-    GHCR="ghcr.io/fboulnois/stable-diffusion-docker"
-    docker pull "$GHCR"
-    docker tag "$GHCR" "$CWD"
-}
+#pull() {
+#    GHCR="ghcr.io/fboulnois/stable-diffusion-docker"
+#    docker pull "$GHCR"
+#    docker tag "$GHCR" "$CWD"
+#}
 
 run() {
     set_gpu_arg "$@"
@@ -47,24 +47,10 @@ run() {
 }
 
 tests() {
-    TEST_IMAGE="An_impressionist_painting_of_a_parakeet_eating_spaghetti_in_the_desert_s1.png"
-    cp "img/${TEST_IMAGE}" "input/${TEST_IMAGE}"
-    run --skip --H 512 --W 640 "abstract art"
-    run --device cpu --image "${TEST_IMAGE}" --strength 0.6 "abstract art"
-    run --model "stabilityai/stable-diffusion-2" \
-        --skip --H 768 --W 768 "abstract art"
-    run --model "stabilityai/stable-diffusion-2-1" \
-        --skip --H 768 --W 768 "abstract art"
-    run --model "stabilityai/stable-diffusion-x4-upscaler" \
-        --image "${TEST_IMAGE}" --half --attention-slicing \
-        --xformers-memory-efficient-attention \
-        --prompt "An impressionist painting of a parakeet eating spaghetti in the desert"
-    run --model "runwayml/stable-diffusion-v1-5" \
-        --n_samples 2 --n_iter 2 --seed 42 \
-        --scheduler HeunDiscreteScheduler \
-        --scale 7.5 --ddim_steps 80 --attention-slicing \
-        --half --skip --negative-prompt "red roses" \
-        --prompt "bouquet of roses"
+    run --device cpu \
+        --skip \
+        --prompt "1girl, green hair, long hair, yellow eyes, warrior armor, warrior princess, tanned-black skin, battle field, shadows, lens flare, masterpiece" \
+        --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name" 
 }
 
 mkdir -p input output
