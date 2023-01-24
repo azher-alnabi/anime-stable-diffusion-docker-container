@@ -159,7 +159,7 @@ def main():
         "--model",
         type=str,
         nargs="?",
-        default="Linaqruf/anything-v3-better-vae", # "CompVis/stable-diffusion-v1-4", "andite/anything-v4.0", "Linaqruf/anything-v3-better-vae",
+        default="Linaqruf/hitokomoru-diffusion-v2", # "CompVis/stable-diffusion-v1-4", "Linaqruf/hitokomoru-diffusion-v2", "Linaqruf/anything-v3-better-vae",
         help="The model used to render images",
     )
     parser.add_argument(
