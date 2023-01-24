@@ -1,13 +1,13 @@
-# Stable Diffusion Docker Container (CPU Only) [WIP]
+# Anime Generator Stable Diffusion Docker Container [WIP]
 
 This Docker container is a text-to-image (txt2img) generation tool that leverages Stable Diffusion with a packaged diffusion model. Stable Diffusion is a deep learning, latent txt2img diffusion model capable of generating photo-realistic images given any text input, for more information visit this wikipedia page: [Stable Diffusion](https://en.wikipedia.org/wiki/Stable_Diffusion). The diffusion model that was packaged in this docker container can be found here: [Diffuser Model](https://huggingface.co/Linaqruf/anything-v3-better-vae).
 
 ## Example Image Output
 
-The following prompt was used to render the three images below, feel free to test this out yourself (Careful! May generate **NSFW** **(_Not Safe For Work_)**, images. Use at your own discretion)
+The following prompt was used to render the three images below. Feel free to test this out yourself! Careful! May generate **NSFW** **(_Not Safe For Work_)**, images. **Use at your own discretion**.
 
 ```sh
-./build.sh run --device cpu --skip --prompt "1girl, green hair, long hair, yellow eyes, warrior armor, warrior princess, tanned-black skin, battle field, shadows, lens flare, masterpiece" --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name"
+./build.sh run --skip --prompt "1girl, green hair, long hair, yellow eyes, warrior armor, warrior princess, tanned-black skin, battle field, shadows, lens flare, masterpiece" --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name"
 ```
 
 <p float="left">
@@ -24,7 +24,7 @@ By default, this pipeline will render images that may be **NSFW** **(_Not Safe F
 
 ## Requirements
 
-By default, this pipeline will render images using only the CPU as rendering on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU, your mileage may vary). Make sure to only use `--device cpu`. The bundled dockerfile runs on 3.10-slim-bullseye, and as such is tested on **only Debian 11** based systems, the operating System I used to personally test this docker container was "Ubuntu 20.04". If you're using **Alpine**, or **Windows**, or **macOS** it may not work, and as such, your mileage may vary (Will check compatability at a later date).
+By default, this pipeline will render images using CPU by default. This is intended as rendering images on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU using the ```test``` option down below, your mileage may vary). The bundled dockerfile runs on 3.10-slim-bullseye, and as such is tested on **Debian 11** based systems. The operating System I used to personally test this docker container was "Ubuntu 20.04 LTS". If you're using **Alpine**, or **Windows**, or **macOS** it may not work, and as such, your mileage may vary (Will check compatability at a later date).
 
 ## Quickstart
 
@@ -32,11 +32,11 @@ The pipeline is managed using a single [`build.sh`](build.sh) script. Big kudos 
 
 ### Work in progress:
 
-Pull Functionality using `./build.sh pull`. This functionality will allow you to pull the latest image once it is available. Currently, follow the build section to initialize Dockerfile.
+Pull Functionality using `./build.sh pull`. This functionality will allow you to pull the latest image once it is available. Currently, follow the build section to initialize Dockerfile. I need to setup github actions.
 
 ## Build
 
-To build:
+First begin by building with the following command:
 
 ```sh
 ./build.sh build
@@ -48,7 +48,7 @@ Work in progress: Make sure your [user access token](#huggingface-token) is save
 
 ## Testing
 
-To run a test:
+Run a test using the following command to see if an image has generated in your `output` folder:
 
 ```sh
 ./build.sh test
@@ -60,10 +60,10 @@ This will render a single 512x512 (height and width) image similar to the three 
 
 ### Text-to-Image 
 
-To run:
+Now run whatever prompts you want with the following command. Try out the options down below (Remember, by default it uses CPU to render images):
 
 ```sh
-./build.sh run --device cpu --prompt 'warrior princess'
+./build.sh run --prompt 'warrior princess'
 ```
 
 ### Options
@@ -71,8 +71,7 @@ To run:
 Some of the options from [`txt2img.py`](https://github.com/CompVis/stable-diffusion/blob/main/scripts/txt2img.py) are implemented for compatibility:
 
 * `--prompt [PROMPT]`: the prompt to render into an image
-* `--negative-prompt [NEGATIVE_PROMPT]`: the prompt to not render into an image
-(default `None`)
+* `--negative-prompt [NEGATIVE_PROMPT]`: the prompt to not render into an image (default `None`)
 * `--n_samples [N_SAMPLES]`: number of images to create per run (default 1)
 * `--n_iter [N_ITER]`: number of times to run pipeline (default 1)
 * `--H [H]`: image height in pixels (default 512, must be divisible by 64)
@@ -93,54 +92,66 @@ The images are saved as PNGs in the `output` folder using the prompt text. The `
 These commands are both identical:
 
 ```sh
-./build.sh run --device cpu 'warrior princess'
-./build.sh run --device cpu --prompt 'warrior princess'
+./build.sh run 'warrior princess'
+./build.sh run --prompt 'warrior princess'
 ```
 
-Set the seed to 255 (Allows rendering of image with constant output):
+This command enables GPU rendering (Must use a Nvidia GPU) using the following command:
 
 ```sh
-./build.sh run --device cpu --seed 255 --prompt 'warrior princess'
+./build.sh run --device gpu --prompt 'warrior princess'
 ```
 
-Options can be combined:
+This command sets the seed to 255 (Allows rendering of image with constant output):
 
 ```sh
-./build.sh run --device cpu --skip --scale 11.0 --seed 255 --prompt 'warrior princess'
+./build.sh run --seed 255 --prompt 'warrior princess'
+```
+
+Several commands can be combined together:
+
+```sh
+./build.sh run --skip --scale 11.0 --seed 255 --prompt 'warrior princess'
 ```
 
 ## Minimize Time Rendering
 
-Minimize rendering time with these options (some options are in experimental):
+There are a few steps you can include if you want to minimize the time it takes to render an image.
 
 * Make images smaller than 512x512 using `--W` and `--H` to decrease memory use and increase image creation speed
-* Use `--half` to decrease memory use but slightly decrease image quality
-* Use `--attention-slicing` to decrease memory use but also decrease image creation speed
 * Decrease the number of samples and increase the number of iterations with `--n_samples` and `--n_iter` to decrease overall memory use
 * Skip the safety checker with `--skip` to run less code (Work in progress: Implementation by default)
 
+### CPU Time Minimization
+
 ```sh
-./build.sh run --device cpu --skip \
+./build.sh run --skip \
+  --W 256 --H 256 \
+  --n_samples 1 --n_iter 1 --prompt 'warrior princess'
+```
+
+### GPU Time Minimization (Experimental, please open up an issue and let me know if any features are not working)
+
+```sh
+./build.sh run --device cuda --skip \
   --W 256 --H 256 --half --attention-slicing \
   --n_samples 1 --n_iter 1 --prompt 'warrior princess'
 ```
 
-## Experimental Options
-
-Options you can play around with (May not work):
-
 * `--attention-slicing`: use less memory at the expense of inference speed (default is no attention slicing)
-* `--device [DEVICE]`: the cpu or cuda device to use to render images (default is unfortunatly `gpu`, will try and fix later)
+* `--device [DEVICE]`: the cpu or cuda device to use to render images (default is `cpu`, switch to `cuda` for GPU rendering)
 * `--half`: use float16 tensors instead of float32 (default `float32`)
 * `--model [MODEL]`: the model used to render images (default is `Linaqruf/anything-v3-better-vae`)
 * `--scheduler [SCHEDULER]`: override the scheduler used to denoise the image (default `DPMSolverSinglestepScheduler`)
 * `--token [TOKEN]`: specify a Huggingface user access token at the command line instead of reading it from a file (default is a file)
 
+## Running on Windows (Experimental, please open up an issue and let me know if any features are not working)
+
 On Windows, if you aren't using WSL2 and instead use MSYS, MinGW, or Git Bash,
 prefix your commands with `MSYS_NO_PATHCONV=1` (or export it beforehand):
 
 ```sh
-MSYS_NO_PATHCONV=1 ./build.sh run --device cpu --half --prompt 'warrior princess'
+MSYS_NO_PATHCONV=1 ./build.sh run --prompt 'warrior princess'
 ```
 
 ## Credits
