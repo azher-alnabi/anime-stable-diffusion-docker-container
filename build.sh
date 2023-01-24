@@ -6,13 +6,13 @@ CWD=$(basename "$PWD")
 
 set_gpu_arg() {
     while [ "$#" -gt 0 ]; do
-        if [ "$1" = "--device" ] && [ "$2" = "cpu" ]; then
-            GPU_ARG=""
+        if [ "$1" = "--device" ] && [ "$2" = "gpu" ]; then
+            GPU_ARG="--gpus=all"
             return
         fi
         shift
     done
-    GPU_ARG="--gpus=all"
+    GPU_ARG=""
 }
 
 build() {
@@ -47,8 +47,7 @@ run() {
 }
 
 tests() {
-    run --device cpu \
-        --skip \
+    run --skip \
         --prompt "1girl, green hair, long hair, yellow eyes, warrior armor, warrior princess, tanned-black skin, battle field, shadows, lens flare, masterpiece" \
         --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name" 
 }
