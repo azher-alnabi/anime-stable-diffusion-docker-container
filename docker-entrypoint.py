@@ -159,7 +159,7 @@ def main():
         "--model",
         type=str,
         nargs="?",
-        default="Linaqruf/hitokomoru-diffusion-v2", # "CompVis/stable-diffusion-v1-4", "Linaqruf/hitokomoru-diffusion-v2", "Linaqruf/anything-v3-better-vae",
+        default="haanba/unofficial-blood-orange-mix", # "CompVis/stable-diffusion-v1-4", "Linaqruf/hitokomoru-diffusion-v2", "Linaqruf/anything-v3-better-vae",
         help="The model used to render images",
     )
     parser.add_argument(
