@@ -10,6 +10,8 @@ These are some of the example images with their corresponding commands. These co
 ./build.sh run --skip --prompt "1girl, green hair, long hair, yellow eyes, warrior armor, warrior princess, tanned-black skin, battle field, shadows, lens flare, masterpiece" --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name"
 ```
 
+### Green-Haired Warrior Princess
+
 <p align="center">
   <img src="img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9746260096546669498__n_1.png" alt="Green-Haired Warrior Princess" width="256" height="256">
   <img src="img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_2951297131937974408__n_1.png" alt="Green-Haired Warrior Princess" width="256" height="256">
@@ -17,6 +19,12 @@ These are some of the example images with their corresponding commands. These co
 </p>
 
 These three images are my rendition on a warrior with green hair, yellow eyes on a battlefield. You can render these same exact images by copying the seed found in the image's names (more information on using seeds below).
+
+### Beautiful Fantasy Village
+
+```sh
+./build.sh run --skip --W 960 --H 320 --prompt "beautiful, fantasy, lens flair, masterpiece, sunny, bright, vibrant, cloudy, worried, neon, sparkling, radiant, sunshine, starry, dreams, background, village, grass, town, temple, emissive, utopia, castle" --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name, boy, girl, people, face" --ddim_steps 25
+```
 
 <p align="center">
   <img src="img/beautiful,_fantasy,_lens_flair,_masterpiece,_sunny,_bright,_vibrant,_cloudy,_worried,_neon,_sparkling,_radiant,_sunshine,_starry,_dreams,_background,_village,_grass,_town__steps_25__scale_11.00__seed_2022835214115895329__n_1.png" alt="Green-Haired Warrior Princess" width="768" height="256">
