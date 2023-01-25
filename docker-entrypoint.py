@@ -160,11 +160,6 @@ def main():
         type=str,
         nargs="?",
         default="ckpt/anything-v3-vae-swapped",
-        # "ckpt/anything-v3-vae-swapped"
-        # "Linaqruf/anything-v3-better-vae",
-        # "Linaqruf/hitokomoru-diffusion-v2",
-        # "Korakoe/AbyssOrangeMix2-HF",
-        # "haanba/unofficial-blood-orange-mix",
         help="The model used to render images",
     )
     parser.add_argument(

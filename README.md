@@ -1,12 +1,10 @@
 # Anime Generator Stable Diffusion Docker Container
 
-
-
-This Docker container is a text-to-image (txt2img) generation tool that leverages Stable Diffusion with a packaged diffusion model. Stable Diffusion is a deep learning, latent txt2img diffusion model capable of generating photo-realistic images given any text input, for more information visit this wikipedia page: [Stable Diffusion](https://en.wikipedia.org/wiki/Stable_Diffusion). The diffusion model that was packaged in this docker container can be found here: [Diffuser Model](https://huggingface.co/Linaqruf/anything-v3-better-vae).
+This Docker container is a text-to-image (txt2img) generation tool that leverages Stable Diffusion with a packaged diffusion model. Stable Diffusion is a deep learning, latent txt2img diffusion model capable of generating photo-realistic images given any text input, for more information visit this wikipedia page: [Stable Diffusion](https://en.wikipedia.org/wiki/Stable_Diffusion). The diffusion model that was packaged in this docker container can be found here: [Diffuser Model](https://huggingface.co/ckpt/anything-v3-vae-swapped).
 
 ## Example Image Output
 
-The following prompt was used to render the three images below. Feel free to test this out yourself! Careful! May generate **NSFW** **(_Not Safe For Work_)**, images. **Use at your own discretion**.
+These are some of the example images with their corresponding commands. These commands are used to generate them using artificial intelligence. Feel free to test this out yourself! Careful, this model may generate **NSFW** **(_Not Safe For Work_)**, images. **Use at your own discretion** (There is an command below that will mitigate this chance of rendering a **NSFW** image).
 
 ```sh
 ./build.sh run --skip --prompt "1girl, green hair, long hair, yellow eyes, warrior armor, warrior princess, tanned-black skin, battle field, shadows, lens flare, masterpiece" --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name"
@@ -18,7 +16,13 @@ The following prompt was used to render the three images below. Feel free to tes
   <img src="img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9764299217508183519__n_1.png" alt="Green-Haired Warrior Princess" width="256" height="256">
 </p>
 
-These three images are my rendition on a warrior with green hair, yellow eyes on a battlefield.
+These three images are my rendition on a warrior with green hair, yellow eyes on a battlefield. You can render these same exact images by copying the seed found in the image's names (more information on using seeds below).
+
+<p align="center">
+  <img src="img/beautiful,_fantasy,_lens_flair,_masterpiece,_sunny,_bright,_vibrant,_cloudy,_worried,_neon,_sparkling,_radiant,_sunshine,_starry,_dreams,_background,_village,_grass,_town__steps_25__scale_11.00__seed_2022835214115895329__n_1.png" alt="Green-Haired Warrior Princess" width="768" height="256">
+</p>
+
+This image is a rendition of a beautiful village with a bright sky. You can render this same exact image by copying the seed found in the image's name (more information on using seeds below).
 
 ## Disclaimer
 
@@ -82,6 +86,9 @@ Some of the options from [`txt2img.py`](https://github.com/CompVis/stable-diffus
 * `--seed [SEED]`: RNG seed for repeatability (default is a random seed)
 * `--ddim_steps [DDIM_STEPS]`: number of sampling steps (default 20)
 * `--skip`: skip safety checker (default is the safety checker is on)
+* `--model [MODEL]`: the model used to render images (default is `Linaqruf/anything-v3-better-vae`)
+* `--scheduler [SCHEDULER]`: override the scheduler used to denoise the image (default `DPMSolverSinglestepScheduler`)
+* `--token [TOKEN]`: specify a Huggingface user access token at the command line instead of reading it from a file (default is a file)
 
 ## Outputs
 
@@ -143,9 +150,6 @@ There are a few steps you can include if you want to minimize the time it takes 
 * `--attention-slicing`: use less memory at the expense of inference speed (default is no attention slicing)
 * `--device [DEVICE]`: the cpu or cuda device to use to render images (default is `cpu`, switch to `cuda` for GPU rendering)
 * `--half`: use float16 tensors instead of float32 (default `float32`)
-* `--model [MODEL]`: the model used to render images (default is `Linaqruf/anything-v3-better-vae`)
-* `--scheduler [SCHEDULER]`: override the scheduler used to denoise the image (default `DPMSolverSinglestepScheduler`)
-* `--token [TOKEN]`: specify a Huggingface user access token at the command line instead of reading it from a file (default is a file)
 
 ## Running on Windows (Experimental, please open up an issue and let me know if any features are not working)
 
