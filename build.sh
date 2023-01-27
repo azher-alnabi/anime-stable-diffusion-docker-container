@@ -50,7 +50,7 @@ tests() {
         --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name" 
 }
 
-mkdir -p input output
+mkdir -p output
 case ${1:-build} in
     build) build ;;
     clean) clean ;;
