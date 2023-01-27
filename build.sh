@@ -26,7 +26,6 @@ clean() {
 dev() {
     docker run --rm --gpus=all --entrypoint=sh \
         -v huggingface:/home/huggingface/.cache/huggingface \
-        -v "$PWD"/input:/home/huggingface/input \
         -v "$PWD"/output:/home/huggingface/output \
         -it "$CWD"
 }
@@ -41,7 +40,6 @@ run() {
     set_gpu_arg "$@"
     docker run --rm ${GPU_ARG} \
         -v huggingface:/home/huggingface/.cache/huggingface \
-        -v "$PWD"/input:/home/huggingface/input \
         -v "$PWD"/output:/home/huggingface/output \
         "$CWD" "$@"
 }

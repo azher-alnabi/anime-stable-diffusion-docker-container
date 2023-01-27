@@ -16,7 +16,6 @@ WORKDIR /home/huggingface
 ENV USE_TORCH=1
 
 RUN mkdir -p /home/huggingface/.cache/huggingface \
-  && mkdir -p /home/huggingface/input \
   && mkdir -p /home/huggingface/output \
   && touch /home/huggingface/token.txt
 
