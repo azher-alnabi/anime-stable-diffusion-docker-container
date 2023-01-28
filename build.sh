@@ -30,11 +30,11 @@ dev() {
         -it "$CWD"
 }
 
-#pull() {
-#    GHCR="ghcr.io/fboulnois/stable-diffusion-docker"
-#    docker pull "$GHCR"
-#    docker tag "$GHCR" "$CWD"
-#}
+pull() {
+    GHCR="ghcr.io/azher-alnabi/anime-stable-diffusion-docker-container"
+    docker pull "$GHCR"
+    docker tag "$GHCR" "$CWD"
+}
 
 run() {
     set_gpu_arg "$@"
