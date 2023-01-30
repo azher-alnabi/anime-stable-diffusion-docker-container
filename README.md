@@ -38,15 +38,29 @@ By default, this pipeline will render images that may be **NSFW** **(_Not Safe F
 
 ## Requirements
 
-By default, this pipeline will render images using CPU by default. This is intended as rendering images on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU using the ```test``` option down below, your mileage may vary). The bundled dockerfile runs on 3.10-slim-bullseye, and as such is tested on **Debian 11** based systems. The operating System I used to personally test this docker container was "Ubuntu 22.04 LTS". If you're using **Alpine**, or **Windows**, or **macOS** it may not work, and as such, your mileage may vary (Will check compatability at a later date).
+By default, this pipeline will render images using CPU by default. This is intended as rendering images on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU using the ```test``` option down below, your mileage may vary). The bundled dockerfile runs on 3.10-slim-bullseye, and as such is tested on **Debian 11** based systems. The operating System I used to personally test this docker container was "Ubuntu Jammy 22.04 (LTS)". If you're using **Alpine**, or **Windows**, or **macOS** it may not work, and as such, your mileage may vary (Will check compatability at a later date).
 
-## Quickstart
+## Quickstart (These commands are for the following OS: "Ubuntu Jammy 22.04 (LTS)")
 
-The pipeline is managed using a single [`build.sh`](build.sh) script. Big kudos to [fboulnois](https://github.com/fboulnois) for setting this up. I cannot thank you enough.
+### Docker setup (Ignore if you already have docker installed on your OS)
 
-### Work in progress:
+It is important to have docker engine installed prior to running this project. If you don't have it installed, follow the official [docker setup](https://docs.docker.com/engine/install/ubuntu/) guide.
 
-Pull Functionality using `./build.sh pull`. This functionality will allow you to pull the latest image once it is available. Currently, follow the build section to initialize Dockerfile. I need to setup github actions.
+### Git and Latest-version setup
+
+The pipeline is managed using a single [`build.sh`](build.sh) script. Big kudos to [fboulnois](https://github.com/fboulnois) for setting this up. I cannot thank you enough. 
+
+Start with the following command to pull from repo:
+
+```sh
+git clone https://github.com/azher-alnabi/anime-stable-diffusion-docker-container.git && cd anime-stable-diffusion-docker-container
+```
+
+Then run the following command to setup the latest version of this repo:
+
+```sh
+./build.sh pull
+```
 
 ## Build
 
@@ -56,19 +70,15 @@ First begin by building with the following command:
 ./build.sh build
 ```
 
-### Work in progress 
-
-Work in progress: Make sure your [user access token](#huggingface-token) is saved in a file called `token.txt`. As far as I am aware, you don't need to pass through a huggingface token current;y, however open a github issue if an error occurs.
-
 ## Testing
 
-Run a test using the following command to see if an image has generated in your `output` folder:
+Run a test using the following command to see if an image has generated. Navigate to the `output` folder to view this image:
 
 ```sh
 ./build.sh test
 ```
 
-This will render a single 512x512 (height and width) image similar to the three images shown above: [Warrior Princess 1](https://github.com/azher-alnabi/Anything-V3-SD-Docker-Container/blob/main/img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9746260096546669498__n_1.png), [Warrior Princess 2](https://github.com/azher-alnabi/Anything-V3-SD-Docker-Container/blob/main/img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_2951297131937974408__n_1.png), [Warrior Princess 3](https://github.com/azher-alnabi/Anything-V3-SD-Docker-Container/blob/main/img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9764299217508183519__n_1.png).
+This test should render a single 512x512 (height and width) image similar to the three images shown above: [Warrior Princess 1](https://github.com/azher-alnabi/Anything-V3-SD-Docker-Container/blob/main/img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9746260096546669498__n_1.png), [Warrior Princess 2](https://github.com/azher-alnabi/Anything-V3-SD-Docker-Container/blob/main/img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_2951297131937974408__n_1.png), [Warrior Princess 3](https://github.com/azher-alnabi/Anything-V3-SD-Docker-Container/blob/main/img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9764299217508183519__n_1.png).
 
 ## Run
 
@@ -96,7 +106,6 @@ Some of the options from [`txt2img.py`](https://github.com/CompVis/stable-diffus
 * `--skip`: skip safety checker (default is the safety checker is on)
 * `--model [MODEL]`: the model used to render images (default is `Linaqruf/anything-v3-better-vae`)
 * `--scheduler [SCHEDULER]`: override the scheduler used to denoise the image (default `DPMSolverSinglestepScheduler`)
-* `--token [TOKEN]`: specify a Huggingface user access token at the command line instead of reading it from a file (default is a file)
 
 ## Outputs
 
@@ -168,15 +177,24 @@ prefix your commands with `MSYS_NO_PATHCONV=1` (or export it beforehand):
 MSYS_NO_PATHCONV=1 ./build.sh run --prompt 'warrior princess'
 ```
 
+### Token setup (Experimental, please open up an issue and let me know if any features are not working)
+
+As far as I am aware, you don't need to pass through a huggingface token currently, however open a github issue if an error occurs. The solution to a token problem may involve saving the [user access token](#huggingface-token) in a file called `token.txt`. Another way to solve this problem would be by adding the token manually using the following command:
+
+* `--token [TOKEN]`: specify a Huggingface user access token at the command line instead of reading it from a file (default is a file)
+
 ## Credits
 
 Special Thanks to the following people and communities involved with helping me create this Docker container.
 
 ### Github Member: fboutnois
-Thank you to fboutnois for the original implementation of this Docker container, and for being super accommodating to my questions and requests. Check out their [github](https://github.com/fboulnois) profile for more of their work.
+Thank you to fboutnois for the [original](https://github.com/fboulnois/stable-diffusion-docker) implementation of this Docker container, and for being super accommodating to my questions and requests. Check out their [github](https://github.com/fboulnois) profile for more of their work.
 
-### Furqanil Taqwa (Aka Linaqruf)
+### HuggingFace Member: Furqanil Taqwa (Aka Linaqruf)
 Thank you to Linaqruf for the creation of the diffuser model: Linaqruf/anything-v3-better-vae. Their work can be found at: [Linaqruf Hugging Face Profile](https://huggingface.co/Linaqruf)
+
+## HuggingFace and Github Member: Camenduru
+Thank you to Camenduru for archiving the diffusers that was used in this docker container. Check out their [github](https://github.com/camenduru) and their [Hugging Face](https://huggingface.co/ckpt) profiles.
 
 ### Huggingface Community
 Thank you to the Huggingface team for creating the AI community and Machine Learning platform, community found at: [Hugging Face Community Landing Page](https://huggingface.co/).
