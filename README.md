@@ -193,7 +193,7 @@ Thank you to fboutnois for the [original](https://github.com/fboulnois/stable-di
 ### HuggingFace Member: Furqanil Taqwa (Aka Linaqruf)
 Thank you to Linaqruf for the creation of the diffuser model: Linaqruf/anything-v3-better-vae. Their work can be found at: [Linaqruf Hugging Face Profile](https://huggingface.co/Linaqruf)
 
-## HuggingFace and Github Member: Camenduru
+### HuggingFace and Github Member: Camenduru
 Thank you to Camenduru for archiving the diffusers that was used in this docker container. Check out their [github](https://github.com/camenduru) and their [Hugging Face](https://huggingface.co/ckpt) profiles.
 
 ### Huggingface Community
