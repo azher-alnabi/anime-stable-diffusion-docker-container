@@ -104,7 +104,7 @@ Some of the options from [`txt2img.py`](https://github.com/CompVis/stable-diffus
 * `--seed [SEED]`: RNG seed for repeatability (default is a random seed)
 * `--ddim_steps [DDIM_STEPS]`: number of sampling steps (default 20)
 * `--skip`: skip safety checker (default is the safety checker is on)
-* `--model [MODEL]`: the model used to render images (default is `Linaqruf/anything-v3-better-vae`)
+* `--model [MODEL]`: the model used to render images (default is `ckpt/anything-v3-vae-swapped`)
 * `--scheduler [SCHEDULER]`: override the scheduler used to denoise the image (default `DPMSolverSinglestepScheduler`)
 
 ## Outputs
