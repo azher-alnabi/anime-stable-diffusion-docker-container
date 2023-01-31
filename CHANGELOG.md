@@ -1,5 +1,17 @@
 # Changelog
 
+## [v1.0.0](https://github.com/azher-alnabi/anime-stable-diffusion-docker-container/compare/v1.0.0-alpha...v1.0.1-alpha) - 2023-01-31
+
+### Added
+
+* Anime Model
+
+### Removed
+
+* Img2Img
+* Inpainting
+* 4x Upscaling
+
 ## [v1.27.0](https://github.com/fboulnois/stable-diffusion-docker/compare/v1.26.0...v1.27.0) - 2023-01-16
 
 ### Added
