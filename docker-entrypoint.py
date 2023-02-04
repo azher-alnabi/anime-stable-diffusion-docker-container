@@ -13,12 +13,6 @@ def iso_date_time():
     return datetime.datetime.now().isoformat()
 
 
-def load_image(path):
-    image = Image.open(os.path.join("input", path)).convert("RGB")
-    print(f"loaded image from {path}:", iso_date_time(), flush=True)
-    return image
-
-
 def remove_unused_args(p):
     params = inspect.signature(p.pipeline).parameters.keys()
     args = {
@@ -130,7 +124,7 @@ def main():
         "--seed", type=int, nargs="?", default=0, help="RNG seed for repeatability"
     )
     parser.add_argument(
-        "--ddim_steps", type=int, nargs="?", default=20, help="Number of sampling steps"
+        "--ddim_steps", type=int, nargs="?", default=22, help="Number of sampling steps"
     )
     parser.add_argument(
         "--attention-slicing",
@@ -159,7 +153,7 @@ def main():
         "--model",
         type=str,
         nargs="?",
-        default="ckpt/anything-v3-vae-swapped",
+        default="ckpt/anything-v4.5-vae-swapped",
         help="The model used to render images",
     )
     parser.add_argument(
@@ -186,13 +180,11 @@ def main():
     parser.add_argument(
         "--token", type=str, nargs="?", help="Huggingface user access token"
     )
-
-
     args = parser.parse_args()
 
     if args.prompt0 is not None:
         args.prompt = args.prompt0
-
+    
     pipeline = stable_diffusion_pipeline(args)
     stable_diffusion_inference(pipeline)
 
