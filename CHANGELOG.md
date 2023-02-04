@@ -1,6 +1,6 @@
 # Changelog
 
-## [v1.1.0]()
+## [v1.1.0](https://github.com/azher-alnabi/anime-stable-diffusion-docker-container/compare/v1.0.0...v1.1.0) - 2023-02-03
 
 ### Replaced
 
