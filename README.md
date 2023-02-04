@@ -1,44 +1,40 @@
 # Anime Generator Stable Diffusion Docker Container
 
-This Docker container is a text-to-image (txt2img) generation tool that leverages Stable Diffusion with a packaged diffusion model. Stable Diffusion is a deep learning, latent txt2img diffusion model capable of generating photo-realistic images given any text input, for more information visit this wikipedia page: [Stable Diffusion](https://en.wikipedia.org/wiki/Stable_Diffusion). The diffusion model that was packaged in this docker container can be found here: [Diffuser Model](https://huggingface.co/ckpt/anything-v3-vae-swapped). This Docker container is built with horizontal scaling in mind, and as such will be able to placed on cloud provider services like AWS, GCP, and Azure.
+This Docker container is a text-to-image (txt2img) generation tool that leverages Stable Diffusion with a packaged diffusion model. Stable Diffusion is a deep learning, latent txt2img diffusion model capable of generating photo-realistic images given any text input, for more information visit this wikipedia page: [Stable Diffusion](https://en.wikipedia.org/wiki/Stable_Diffusion). The diffusion model that was packaged in this docker container can be found here: [Diffuser Model](https://huggingface.co/ckpt/anything-v4.5-vae-swapped). This Docker container is built with horizontal scaling in mind, and as such will be able to placed on cloud provider services like AWS, GCP, and Azure.
 
 ## Example Image Output
 
-These are some of the example images with their corresponding commands. These commands are used to generate them using artificial intelligence. Feel free to test this out yourself! Careful, this model may generate **NSFW** **(_Not Safe For Work_)**, images. **Use at your own discretion** (There is an command below that will mitigate this chance of rendering a **NSFW** image).
+These are some of the example images with their corresponding commands. These commands are used to generate them using artificial intelligence. Feel free to test this out yourself!
 
 ```sh
-./build.sh run --skip --prompt "1girl, green hair, long hair, yellow eyes, warrior armor, warrior princess, tanned-black skin, battle field, shadows, lens flare, masterpiece" --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name"
+./build.sh run --prompt "highres, 1girl, purple hair, long hair, yellow eyes, black warrior armor, warrior princess, battlefield, shadows, lens flare, masterpiece, sunshine, clothed, red lips, forest, breathtakingly beautiful, hair bun, tanned skin" --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name, NSFW, cat ears, weapon, sword, shield"
 ```
 
-### Green-Haired Warrior Princess
+### Purple-Haired Warrior Princess
 
 <p align="center">
-  <img src="img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9746260096546669498__n_1.png" alt="Green-Haired Warrior Princess" width="256" height="256">
-  <img src="img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_2951297131937974408__n_1.png" alt="Green-Haired Warrior Princess" width="256" height="256">
-  <img src="img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9764299217508183519__n_1.png" alt="Green-Haired Warrior Princess" width="256" height="256">
+  <img src="img/highres,_1girl,_purple_hair,_long_hair,_yellow_eyes,_black_warrior_armor,_warrior_princess,_battlefield,_shadows,_lens_flare,_masterpiece,_sunshine,_clothed,_red_lips,_fo__steps_22__scale_11.00__seed_8571956922351865579__n_1.png" alt="Purple-Haired Warrior Princess" width="256" height="256">
+  <img src="img/highres,_1girl,_purple_hair,_long_hair,_yellow_eyes,_black_warrior_armor,_warrior_princess,_battlefield,_shadows,_lens_flare,_masterpiece,_sunshine,_clothed,_red_lips,_fo__steps_22__scale_11.00__seed_11254028509881136190__n_1.png" alt="Purple-Haired Warrior Princess" width="256" height="256">
+  <img src="img/highres,_1girl,_purple_hair,_long_hair,_yellow_eyes,_black_warrior_armor,_warrior_princess,_battlefield,_shadows,_lens_flare,_masterpiece,_sunshine,_clothed,_red_lips,_fo__steps_22__scale_11.00__seed_14222826273838498285__n_1.png" alt="Purple-Haired Warrior Princess" width="256" height="256">
 </p>
 
-These three images are my rendition on a warrior with green hair, yellow eyes on a battlefield. You can render these same exact images by copying the seed found in the image's names (more information on using seeds below).
+These three images are my rendition on a warrior with purple hair, yellow eyes on a battlefield. You can render these same exact images by copying the seed found in the image's names (more information on using seeds below).
 
 ### Beautiful Fantasy Village
 
 ```sh
-./build.sh run --skip --W 960 --H 320 --prompt "beautiful, fantasy, lens flair, masterpiece, sunny, bright, vibrant, cloudy, worried, neon, sparkling, radiant, sunshine, starry, dreams, background, village, grass, town, temple, emissive, utopia, castle" --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name, boy, girl, people, face" --ddim_steps 25
+./build.sh run --W 960 --H 320 --prompt "beautiful, fantasy, lens flair, masterpiece, sunny, bright, vibrant, cloudy, worried, neon, sparkling, radiant, sunshine, starry, dreams, background, village, grass, town, temple, emissive, utopia, castle" --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name, boy, girl, people, face" --ddim_steps 25
 ```
 
 <p align="center">
-  <img src="img/beautiful,_fantasy,_lens_flair,_masterpiece,_sunny,_bright,_vibrant,_cloudy,_worried,_neon,_sparkling,_radiant,_sunshine,_starry,_dreams,_background,_village,_grass,_town__steps_25__scale_11.00__seed_2022835214115895329__n_1.png" alt="Green-Haired Warrior Princess" width="768" height="256">
+  <img src="img/beautiful,_fantasy,_lens_flair,_masterpiece,_sunny,_bright,_vibrant,_cloudy,_worried,_neon,_sparkling,_radiant,_sunshine,_starry,_dreams,_background,_village,_grass,_town__steps_25__scale_11.00__seed_3463221830618119851__n_1.png" alt="Beautiful Fantasy Village" width="768" height="256">
 </p>
 
 This image is a rendition of a beautiful village with a bright sky. You can render this same exact image by copying the seed found in the image's name (more information on using seeds below).
 
-## Disclaimer
-
-By default, this pipeline will render images that may be **NSFW** **(_Not Safe For Work_)**. The reason with why this will occur is that it utilizes the ```--skip``` feature set as this allows for the time with which it takes to render an image to be quicker. As such, if you use this tool for safe for work applications (SFW), do not include ```--skip```. **Use at your own discretion**.
-
 ## Requirements
 
-By default, this pipeline will render images using CPU by default. This is intended as rendering images on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 4 minutes and 50 seconds on a Ryzen 5 5600x CPU using the ```test``` option down below, your mileage may vary). The bundled dockerfile runs on 3.10-slim-bullseye, and as such is tested on **Debian 11** based systems. The operating System I used to personally test this docker container was "Ubuntu Jammy 22.04 (LTS)". If you're using **Alpine**, or **Windows**, or **macOS** it may not work, and as such, your mileage may vary (Will check compatability at a later date).
+By default, this pipeline will render images using CPU by default. This is intended as rendering images on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 5 minutes and 20 seconds on a Ryzen 5 5600x CPU using the ```test``` option down below, your mileage may vary). The bundled dockerfile runs on 3.10-slim-bullseye, and as such is tested on **Debian 11** based systems. The operating System I used to personally test this docker container was "Ubuntu Jammy 22.04 (LTS)". If you're using **Alpine**, or **Windows**, or **macOS** it may not work, and as such, your mileage may vary (Will check compatability at a later date).
 
 ## Quickstart (These commands are for the following OS: "Ubuntu Jammy 22.04 (LTS)")
 
@@ -78,7 +74,7 @@ Run a test using the following command to see if an image has generated. Navigat
 ./build.sh test
 ```
 
-This test should render a single 512x512 (height and width) image similar to the three images shown above: [Warrior Princess 1](https://github.com/azher-alnabi/Anything-V3-SD-Docker-Container/blob/main/img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9746260096546669498__n_1.png), [Warrior Princess 2](https://github.com/azher-alnabi/Anything-V3-SD-Docker-Container/blob/main/img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_2951297131937974408__n_1.png), [Warrior Princess 3](https://github.com/azher-alnabi/Anything-V3-SD-Docker-Container/blob/main/img/1girl,_green_hair,_long_hair,_yellow_eyes,_warrior_armor,_warrior_princess,_tanned-black_skin,_battle_field,_shadows,_lens_flare,_masterpiece__steps_20__scale_11.00__seed_9764299217508183519__n_1.png).
+This test should render a single 512x512 (height and width) image similar to the three images shown above.
 
 ## Run
 
@@ -102,9 +98,9 @@ Some of the options from [`txt2img.py`](https://github.com/CompVis/stable-diffus
 * `--W [W]`: image width in pixels (default 512, must be divisible by 64)
 * `--scale [SCALE]`: Classifier Guidance Scale (CGS) (default 11)
 * `--seed [SEED]`: RNG seed for repeatability (default is a random seed)
-* `--ddim_steps [DDIM_STEPS]`: number of sampling steps (default 20)
+* `--ddim_steps [DDIM_STEPS]`: number of sampling steps (default 22)
 * `--skip`: skip safety checker (default is the safety checker is on)
-* `--model [MODEL]`: the model used to render images (default is `ckpt/anything-v3-vae-swapped`)
+* `--model [MODEL]`: the model used to render images (default is `ckpt/anything-v4.5-vae-swapped`)
 * `--scheduler [SCHEDULER]`: override the scheduler used to denoise the image (default `DPMSolverSinglestepScheduler`)
 
 ## Outputs
@@ -177,11 +173,29 @@ prefix your commands with `MSYS_NO_PATHCONV=1` (or export it beforehand):
 MSYS_NO_PATHCONV=1 ./build.sh run --prompt 'warrior princess'
 ```
 
-### Token setup (Experimental, please open up an issue and let me know if any features are not working)
+## Token setup (Experimental, please open up an issue and let me know if any features are not working)
 
 As far as I am aware, you don't need to pass through a huggingface token currently, however open a github issue if an error occurs. The solution to a token problem may involve saving the [user access token](#huggingface-token) in a file called `token.txt`. Another way to solve this problem would be by adding the token manually using the following command:
 
 * `--token [TOKEN]`: specify a Huggingface user access token at the command line instead of reading it from a file (default is a file)
+
+## Docker Cleanup and Pruning
+
+If you want to remove all docker images and containers, you can use the following command:
+
+```sh
+./build.sh clean
+```
+
+If you want to remove all docker images, containers, volumes, and output images, you can use the following command:
+
+```sh
+./build.sh wipe
+```
+
+## Disclaimer
+
+By default, the default model that is being used in this docker image will render images that are **SFW** **(_Safe For Work_)**. As a result of this, the outputted images may be returned blank if an image is flagged for being **NSFW** **(_Not Safe For Work_)**. The built-in saftey checker is responsible for this, and may cause problems due to it being. If you want to skip over this saftey feature, and render images that have the potential for being **NSFW**, you can use the ```--skip``` feature set to disable the saftey checker. **Use at your own discretion**.
 
 ## Credits
 
@@ -191,7 +205,7 @@ Special Thanks to the following people and communities involved with helping me 
 Thank you to fboutnois for the [original](https://github.com/fboulnois/stable-diffusion-docker) implementation of this Docker container, and for being super accommodating to my questions and requests. Check out their [github](https://github.com/fboulnois) profile for more of their work.
 
 ### HuggingFace Member: Furqanil Taqwa (Aka Linaqruf)
-Thank you to Linaqruf for the creation of the diffuser model: Linaqruf/anything-v3-better-vae. Their work can be found at: [Linaqruf Hugging Face Profile](https://huggingface.co/Linaqruf)
+Thank you to Linaqruf for the creation of the base diffuser model: Linaqruf/anything-v3-better-vae. Their work can be found at: [Linaqruf Hugging Face Profile](https://huggingface.co/Linaqruf)
 
 ### HuggingFace and Github Member: Camenduru
 Thank you to Camenduru for archiving the diffusers that was used in this docker container. Check out their [github](https://github.com/camenduru) and their [Hugging Face](https://huggingface.co/ckpt) profiles.
