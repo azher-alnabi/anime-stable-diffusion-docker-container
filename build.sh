@@ -20,7 +20,13 @@ build() {
 }
 
 clean() {
-    docker system prune -f
+    docker system prune -a -f
+}
+
+wipe() {
+    docker system prune -a -f 
+    docker volume prune -f
+    rm -rf output/*
 }
 
 dev() {
@@ -46,14 +52,15 @@ run() {
 
 tests() {
     run --skip \
-        --prompt "1girl, green hair, long hair, yellow eyes, warrior armor, warrior princess, tanned-black skin, battle field, shadows, lens flare, masterpiece" \
-        --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name" 
+        --prompt "highres, 1girl, purple hair, long hair, yellow eyes, black warrior armor, warrior princess, battlefield, shadows, lens flare, masterpiece, sunshine, clothed, red lips, forest, breathtakingly beautiful, hair bun, tanned skin" \
+        --negative-prompt "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name, NSFW, cat ears, weapon, sword, shield" 
 }
 
 mkdir -p output
 case ${1:-build} in
     build) build ;;
     clean) clean ;;
+    wipe) wipe ;;
     dev) dev "$@" ;;
     pull) pull ;;
     run) shift; run "$@" ;;
