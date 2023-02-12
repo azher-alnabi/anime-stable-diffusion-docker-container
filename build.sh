@@ -6,7 +6,7 @@ CWD=$(basename "$PWD")
 
 set_gpu_arg() {
     while [ "$#" -gt 0 ]; do
-        if [ "$1" = "--device" ] && [ "$2" = "gpu" ]; then
+        if [ "$1" = "--device" ] && [ "$2" = "cuda" ]; then
             GPU_ARG="--gpus=all"
             return
         fi
