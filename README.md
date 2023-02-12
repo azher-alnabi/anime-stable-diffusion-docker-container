@@ -121,7 +121,7 @@ These commands are both identical:
 This command enables GPU rendering (Must use a Nvidia GPU) using the following command:
 
 ```sh
-./build.sh run --device gpu --prompt 'warrior princess'
+./build.sh run --device cuda --prompt 'warrior princess'
 ```
 
 This command sets the seed to 255 (Allows rendering of image with constant output):
