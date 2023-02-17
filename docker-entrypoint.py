@@ -166,7 +166,7 @@ def main():
         "--scheduler",
         type=str,
         nargs="?",
-        default="KDPM2AncestralDiscreteScheduler",
+        default="DPMSolverSinglestepScheduler",
         help="Override the scheduler used to denoise the image",
     )
     parser.add_argument(
