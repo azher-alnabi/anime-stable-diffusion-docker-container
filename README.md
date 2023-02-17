@@ -36,7 +36,7 @@ This image is a rendition of a beautiful village with a bright sky. You can rend
 
 By default, this pipeline will render images using CPU by default. This is intended as rendering images on a GPU is extremely cost prohibitive. As a result of this, it will take a few minutes to create one image (Roughly 5 minutes and 20 seconds on a Ryzen 5 5600x CPU using the ```test``` option down below, your mileage may vary). The bundled dockerfile runs on 3.10-slim-bullseye, and as such is tested on **Debian 11** based systems. The operating System I used to personally test this docker container was "Ubuntu Jammy 22.04 (LTS)". If you're using **Alpine**, or **Windows**, or **macOS** it may not work, and as such, your mileage may vary (Will check compatability at a later date).
 
-## Quickstart (These commands are for the following OS: "Ubuntu Jammy 22.04 (LTS)")
+## Startup Guide (Need Debian-Based Linux Distributions)
 
 ### Docker setup (Ignore if you already have docker installed on your OS)
 
@@ -52,11 +52,6 @@ Start with the following command to pull from repo:
 git clone https://github.com/azher-alnabi/anime-stable-diffusion-docker-container.git && cd anime-stable-diffusion-docker-container
 ```
 
-Then run the following command to setup the latest version of this repo:
-
-```sh
-./build.sh pull
-```
 
 ## Build
 
