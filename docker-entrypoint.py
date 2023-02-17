@@ -153,7 +153,7 @@ def main():
         "--model",
         type=str,
         nargs="?",
-        default="ckpt/anything-v4.5-vae-swapped",
+        default="Azher/Anything-v4.5-vae-fp16-diffuser",
         help="The model used to render images",
     )
     parser.add_argument(
@@ -166,7 +166,7 @@ def main():
         "--scheduler",
         type=str,
         nargs="?",
-        default="DPMSolverSinglestepScheduler",
+        default="KDPM2AncestralDiscreteScheduler",
         help="Override the scheduler used to denoise the image",
     )
     parser.add_argument(
