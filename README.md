@@ -1,4 +1,4 @@
-# Dockerized Anime Generator Tool
+# Dockerized Anime Generation Toolkit
 
 This is a dockerized implementation of [Stable Diffusion](https://en.wikipedia.org/wiki/Stable_Diffusion) packaged with an anime based diffusion model. Stable Diffusion is a deep learning, latent text-to-image (txt2img) diffusion model capable of generating photo-realistic images given any text input. The diffusion model that was packaged in this docker container can be found here: [Diffuser Model](https://huggingface.co/Azher/Anything-v4.5-vae-fp16-diffuser). This implementation is intended for horizontal scaling on cloud provider services like AWS, GCP, and Azure.
 
